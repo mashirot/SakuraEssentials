@@ -1,0 +1,6 @@
+name: SakuraEssentials
+version: '${project.version}'
+main: ski.mashiro.SakuraEssentials
+api-version: 1.19
+authors: [ MashiroT ]
+description: 基础指令
