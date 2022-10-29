@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.jetbrains.annotations.NotNull;
 import ski.mashiro.data.PlayerData;
 import ski.mashiro.pojo.OwnPlayer;
 
@@ -15,7 +16,7 @@ import java.util.Iterator;
 public class Listener implements org.bukkit.event.Listener {
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
+    public void onPlayerJoin(@NotNull PlayerJoinEvent e) {
         PlayerData.PLAYER_LIST.add(new OwnPlayer(e.getPlayer(), null, null));
     }
 
@@ -32,7 +33,7 @@ public class Listener implements org.bukkit.event.Listener {
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent e) {
+    public void onPlayerDeath(@NotNull PlayerDeathEvent e) {
         PlayerData.PLAYER_DEATH_LOCATION.put(e.getEntity(), e.getEntity().getLocation());
     }
 }

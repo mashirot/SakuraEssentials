@@ -4,6 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import ski.mashiro.command.Home;
 import ski.mashiro.command.Tp;
+import ski.mashiro.file.ConfigFiles;
+import ski.mashiro.file.HomeFiles;
+import ski.mashiro.net.UpdateCheck;
 
 import java.util.Objects;
 
@@ -14,19 +17,27 @@ public final class SakuraEssentials extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        this.getLogger().info("SakuraEssentials 加载中");
+        this.getLogger().info("加载中");
+        ConfigFiles.plugin = this;
+        ConfigFiles.createConfig();
+        HomeFiles.plugin = this;
+        HomeFiles.createHomeFolder();
     }
 
     @Override
     public void onEnable() {
+        ConfigFiles.loadConfig();
+        HomeFiles.loadHomeData();
         Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setExecutor(new Tp());
         Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setExecutor(new Home());
-
-        this.getLogger().info("SakuraEssentials 启动成功");
+        this.getLogger().info("启动成功");
+        UpdateCheck.checkUpdate(this);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        ConfigFiles.saveConfig();
+        HomeFiles.saveHomeData();
+        this.getLogger().info("卸载成功");
     }
 }

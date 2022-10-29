@@ -3,7 +3,11 @@ package ski.mashiro.command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import ski.mashiro.data.HomeData;
+
+import java.util.List;
 
 /**
  * @author MashiroT
@@ -19,23 +23,65 @@ public class Home implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 0) {
             sender.sendMessage("");
+            return true;
         }
         String cmd = args[0];
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("输入者只能是玩家");
+            return true;
+        }
         if (args.length == LENGTH_2) {
+            String homeName = args[1];
             switch (cmd.toLowerCase()) {
                 case SETHOME:
+                    if (HomeData.addHome((Player) sender, homeName)) {
+                        sender.sendMessage("添加成功");
+                        break;
+                    }
+                    sender.sendMessage("家重复");
                     break;
                 case DELHOME:
+                    if (HomeData.delHome(sender.getName(), homeName)) {
+                        sender.sendMessage("删除成功");
+                    }
+                    sender.sendMessage("不存在此家");
                     break;
                 case HOME:
+                    if (HomeData.transportPlayerToHome((Player) sender, homeName)) {
+                        sender.sendMessage("已传送至家：" + homeName);
+                        break;
+                    }
+                    sender.sendMessage("不存在此家");
                     break;
                 default:
-                    sender.sendMessage("");
+                    sender.sendMessage("用法错误，输入 /sakura help 插件");
+                    break;
             }
         }
         if (args.length == LENGTH_1) {
-            if (LISTHOME.equalsIgnoreCase(cmd)) {
-
+            switch (cmd.toLowerCase()) {
+                case LISTHOME:
+                    List<ski.mashiro.pojo.Home> homeList = HomeData.listPlayerHome(sender.getName());
+                    if (homeList == null) {
+                        sender.sendMessage("还没有设置家");
+                        break;
+                    }
+                    for (ski.mashiro.pojo.Home home : homeList) {
+                        sender.sendMessage(home.getHomeName() + "  "  + home.getHomeLocation());
+                    }
+                    break;
+                case SETHOME:
+                    sender.sendMessage("用法错误，/sakura sethome [家名]");
+                    break;
+                case DELHOME:
+                    sender.sendMessage("用法错误，/sakura delhome [家名]");
+                    break;
+                case HOME:
+                    sender.sendMessage("用法错误，/sakura home [家名]");
+                    break;
+                default:
+                    sender.sendMessage("用法错误，输入 /sakura help 插件");
+                    break;
             }
         }
         return true;
