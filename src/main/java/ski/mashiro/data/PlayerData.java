@@ -16,7 +16,7 @@ public class PlayerData {
     public static final Map<Player, Location> PLAYER_DEATH_LOCATION = new Hashtable<>();
 
     public static OwnPlayer getPlayer(String playerName) {
-        if (PLAYER_LIST.size() == 0 || PLAYER_LIST.size() == 1) {
+        if (PLAYER_LIST.size() == 0) {
             return null;
         }
         for (OwnPlayer player : PLAYER_LIST) {

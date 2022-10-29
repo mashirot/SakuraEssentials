@@ -36,7 +36,7 @@ public class UpdateCheck {
                 plugin.getLogger().info("当前有更新可用，请前往MCBBS发布贴下载");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            plugin.getLogger().info("连接更新服务器超时");
         }
     }
 

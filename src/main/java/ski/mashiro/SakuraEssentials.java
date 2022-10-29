@@ -3,11 +3,10 @@ package ski.mashiro;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import ski.mashiro.command.Home;
-import ski.mashiro.command.TabCompleter;
-import ski.mashiro.command.Tp;
+import ski.mashiro.command.Command;
 import ski.mashiro.file.ConfigFiles;
 import ski.mashiro.file.HomeFiles;
+import ski.mashiro.file.MessageFiles;
 import ski.mashiro.listener.Listener;
 import ski.mashiro.net.UpdateCheck;
 
@@ -25,15 +24,16 @@ public final class SakuraEssentials extends JavaPlugin {
         ConfigFiles.createConfig();
         HomeFiles.plugin = this;
         HomeFiles.createHomeFolder();
+        MessageFiles.createMessageFile(this);
     }
 
     @Override
     public void onEnable() {
         ConfigFiles.loadConfig();
         HomeFiles.loadHomeData();
-        Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setExecutor(new Tp());
-        Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setExecutor(new Home());
-        Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setTabCompleter(new TabCompleter());
+        MessageFiles.loadMessage(this);
+        Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setExecutor(new Command());
+        Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setTabCompleter(new Command());
         Bukkit.getPluginManager().registerEvents(new Listener(), this);
         this.getLogger().info("启动成功");
         UpdateCheck.checkUpdate(this);
