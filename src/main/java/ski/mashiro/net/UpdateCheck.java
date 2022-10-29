@@ -29,7 +29,7 @@ public class UpdateCheck {
                     InputStream inputStream = urlConnection.getInputStream();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))
             ) {
-                if (ConfigFiles.config.getVersion().equals(bufferedReader.readLine())) {
+                if (String.valueOf(ConfigFiles.config.getVersion()).equals(bufferedReader.readLine())) {
                     plugin.getLogger().info("当前为最新版本，感谢您的使用");
                     return;
                 }

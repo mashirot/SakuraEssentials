@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import ski.mashiro.data.HomeData;
+import ski.mashiro.pojo.OwnHome;
 
 import java.util.List;
 
@@ -15,10 +16,10 @@ import java.util.List;
 public class Home implements CommandExecutor {
     private static final int LENGTH_1 = 1;
     private static final int LENGTH_2 = 2;
-    private static final String SETHOME = "sethome";
-    private static final String DELHOME = "delhome";
-    private static final String LISTHOME = "listhome";
-    private static final String HOME = "home";
+    public static final String SETHOME = "sethome";
+    public static final String DELHOME = "delhome";
+    public static final String LISTHOME = "listhome";
+    public static final String HOME = "home";
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 0) {
@@ -43,6 +44,7 @@ public class Home implements CommandExecutor {
                 case DELHOME:
                     if (HomeData.delHome(sender.getName(), homeName)) {
                         sender.sendMessage("删除成功");
+                        break;
                     }
                     sender.sendMessage("不存在此家");
                     break;
@@ -61,13 +63,13 @@ public class Home implements CommandExecutor {
         if (args.length == LENGTH_1) {
             switch (cmd.toLowerCase()) {
                 case LISTHOME:
-                    List<ski.mashiro.pojo.Home> homeList = HomeData.listPlayerHome(sender.getName());
-                    if (homeList == null) {
+                    List<OwnHome> ownHomeList = HomeData.listPlayerHome(sender.getName());
+                    if (ownHomeList == null) {
                         sender.sendMessage("还没有设置家");
                         break;
                     }
-                    for (ski.mashiro.pojo.Home home : homeList) {
-                        sender.sendMessage(home.getHomeName() + "  "  + home.getHomeLocation());
+                    for (OwnHome ownHome : ownHomeList) {
+                        sender.sendMessage(ownHome.getHomeName() + "  "  + ownHome.getHomeLocation());
                     }
                     break;
                 case SETHOME:

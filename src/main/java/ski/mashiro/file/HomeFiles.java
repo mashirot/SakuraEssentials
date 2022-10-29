@@ -3,7 +3,7 @@ package ski.mashiro.file;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.plugin.Plugin;
-import ski.mashiro.pojo.Home;
+import ski.mashiro.pojo.OwnHome;
 import ski.mashiro.data.HomeData;
 import ski.mashiro.util.Utils;
 
@@ -41,9 +41,15 @@ public class HomeFiles {
             return;
         }
         try {
-            for (Map.Entry<String, List<Home>> homeListEntry : HomeData.PLAYER_HOME.entrySet()) {
-                File homeFile = new File(plugin.getDataFolder() + "/Homes" + homeListEntry.getKey() + ".yml");
-                if (homeFile.createNewFile()) {
+            for (Map.Entry<String, List<OwnHome>> homeListEntry : HomeData.PLAYER_HOME.entrySet()) {
+                File homeFile = new File(plugin.getDataFolder() + "/Homes/" + homeListEntry.getKey() + ".yml");
+                if (!homeFile.exists()) {
+                    if (homeFile.createNewFile()) {
+                        FileUtils.write(homeFile, Utils.OBJECT_MAPPER.writeValueAsString(homeListEntry.getValue()), "utf-8");
+                        continue;
+                    }
+                }
+                if (homeFile.exists()) {
                     FileUtils.write(homeFile, Utils.OBJECT_MAPPER.writeValueAsString(homeListEntry.getValue()), "utf-8");
                 }
             }
@@ -61,7 +67,7 @@ public class HomeFiles {
         if (homeFiles == null || homeFiles.length == 0) {
             return;
         }
-        CollectionType collectionType = Utils.OBJECT_MAPPER.getTypeFactory().constructCollectionType(List.class, Home.class);
+        CollectionType collectionType = Utils.OBJECT_MAPPER.getTypeFactory().constructCollectionType(List.class, OwnHome.class);
         try {
             for (File homeFile : homeFiles) {
                 HomeData.PLAYER_HOME.put(homeFile.getName().substring(0, homeFile.getName().indexOf(".")), Utils.OBJECT_MAPPER.readValue(FileUtils.readFileToString(homeFile, "utf-8"), collectionType));

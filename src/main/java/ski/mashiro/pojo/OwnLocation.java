@@ -10,7 +10,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Config {
-    private double version;
-    private boolean checkUpdate;
+public class OwnLocation {
+    private String world;
+    private double vectorX;
+    private double vectorY;
+    private double vectorZ;
+    private float yaw;
+    private float pitch;
 }

@@ -3,7 +3,6 @@ package ski.mashiro.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bukkit.Location;
 
 /**
  * @author MashiroT
@@ -11,7 +10,7 @@ import org.bukkit.Location;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Home {
+public class OwnHome {
     private String homeName;
-    private Location homeLocation;
+    private OwnLocation homeLocation;
 }

@@ -16,9 +16,9 @@ public class Tp implements CommandExecutor {
     private static final int LENGTH_2 = 2;
     public static final String TPA = "tpa";
     public static final String TPAHERE = "tpahere";
-    private static final String TPACCEPT = "tpaccept";
-    private static final String TPADENY = "tpadeny";
-    private static final String BACK = "back";
+    public static final String TPACCEPT = "tpaccept";
+    public static final String TPADENY = "tpadeny";
+    public static final String BACK = "back";
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 0) {
