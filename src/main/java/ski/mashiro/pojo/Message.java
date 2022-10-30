@@ -30,4 +30,6 @@ public class Message {
     private String transportToHomeSuccessMsg = "&2[SakuraEssentials] 传送成功";
     private String homeExistMsg = "&2[SakuraEssentials] 家已存在";
     private String homeDontExistMsg = "&2[SakuraEssentials] 不存在此家";
+
+    private String clearDropMsg = "&2[SakuraEssentials] 清理了 %sum% 个掉落物";
 }

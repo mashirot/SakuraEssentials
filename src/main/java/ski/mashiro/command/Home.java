@@ -30,7 +30,7 @@ public class Home{
         if (cmd.equalsIgnoreCase(LISTHOME)) {
             List<OwnHome> ownHomeList = HomeData.listPlayerHome(sender.getName());
             if (ownHomeList == null) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getNoHomeMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getNoHomeMsg(), sender.getName()));
                 return true;
             }
             int index = 1;
@@ -40,7 +40,7 @@ public class Home{
             return true;
         }
         if (cmd.equalsIgnoreCase(SETHOME) || cmd.equalsIgnoreCase(DELHOME) || cmd.equalsIgnoreCase(HOME)) {
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
             return true;
         }
         return false;
@@ -50,26 +50,26 @@ public class Home{
         String homeName = args[1];
         if (cmd.equalsIgnoreCase(SETHOME)) {
             if (HomeData.addHome((Player) sender, homeName)) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getSetHomeSuccessMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getSetHomeSuccessMsg(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getHomeExistMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getHomeExistMsg(), sender.getName()));
             return true;
         }
         if (cmd.equalsIgnoreCase(DELHOME)) {
             if (HomeData.delHome(sender.getName(), homeName)) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getDelHomeSuccessMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getDelHomeSuccessMsg(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getHomeDontExistMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getHomeDontExistMsg(), sender.getName()));
             return true;
         }
         if (cmd.equalsIgnoreCase(HOME)) {
             if (HomeData.transportPlayerToHome((Player) sender, homeName)) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTransportToHomeSuccessMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTransportToHomeSuccessMsg(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getHomeDontExistMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getHomeDontExistMsg(), sender.getName()));
             return true;
         }
         return false;
