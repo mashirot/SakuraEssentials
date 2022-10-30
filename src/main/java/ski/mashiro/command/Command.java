@@ -23,21 +23,21 @@ public class Command implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getSenderTypeErr(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getSenderTypeErr(), sender.getName()));
             return true;
         }
         if (args.length == LENGTH_2) {
             if (!(Tp.tpLength2(sender, args) || Home.homeLength2(sender, args))) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
             }
         }
         if (args.length == LENGTH_1) {
             if (!(Tp.tpLength1(sender, args) || Home.homeLength1(sender, args))) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
             }
         }
         if (args.length != LENGTH_1 && args.length != LENGTH_2) {
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
         }
         return true;
     }

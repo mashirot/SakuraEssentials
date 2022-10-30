@@ -9,12 +9,19 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 public class Utils {
     public static final ObjectMapper OBJECT_MAPPER = new YAMLMapper();
     private static final String PLAYER_PLACE_HOLDER = "%player%";
-    public static String transferPlaceHolder(String str, String playerName) {
+    private static final String SUM_PLACE_HOLDER = "%sum%";
+    public static String transferPlayerPlaceHolder(String str, String playerName) {
         String result = str.replaceAll("&", "§");
         if (result.contains(PLAYER_PLACE_HOLDER)) {
             result = result.replaceAll(PLAYER_PLACE_HOLDER, playerName);
         }
         return result;
     }
-
+    public static String transferSumPlaceHolder(String str, String sum) {
+        String result = str.replaceAll("&", "§");
+        if (result.contains(SUM_PLACE_HOLDER)) {
+            result = result.replaceAll(SUM_PLACE_HOLDER, sum);
+        }
+        return result;
+    }
 }

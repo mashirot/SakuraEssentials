@@ -26,26 +26,26 @@ public class Tp {
         }
         if (TPACCEPT.equalsIgnoreCase(cmd)) {
             if (PlayerData.transportPlayerToPlayer(player)) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpacceptSenderMsg(), sender.getName()));
-                player.getRelatedPlayer().sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpacceptReceiverMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpacceptSenderMsg(), sender.getName()));
+                player.getRelatedPlayer().sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpacceptReceiverMsg(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getNoTpRequestMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getNoTpRequestMsg(), sender.getName()));
             return true;
         }
         if (TPADENY.equalsIgnoreCase(cmd)) {
             player.setType(null);
             player.setRelatedPlayer(null);
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpadenySenderMsg(), sender.getName()));
-            player.getRelatedPlayer().sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpadenyReceiverMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpadenySenderMsg(), sender.getName()));
+            player.getRelatedPlayer().sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpadenyReceiverMsg(), sender.getName()));
             return true;
         }
         if (BACK.equalsIgnoreCase(cmd)) {
             if (PlayerData.transportPlayerToDeathLocation(player.getPlayer())) {
-                sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getBackSuccessMsg(), sender.getName()));
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getBackSuccessMsg(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getNoDeathPoint(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getNoDeathPoint(), sender.getName()));
             return true;
         }
         return false;
@@ -60,21 +60,21 @@ public class Tp {
             return true;
         }
         if (senderName.equals(goalName)) {
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpSelfMsg(), sender.getName()));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpSelfMsg(), sender.getName()));
             return true;
         }
         if (TPA.equalsIgnoreCase(cmd)) {
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpaSenderMsg(), senderName));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpaSenderMsg(), senderName));
             goalPlayer.setType(TPA);
             goalPlayer.setRelatedPlayer((Player) sender);
-            goalPlayer.getPlayer().sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpaReceiverMsg(), senderName));
+            goalPlayer.getPlayer().sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpaReceiverMsg(), senderName));
             return true;
         }
         if (TPAHERE.equalsIgnoreCase(cmd)) {
-            sender.sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpahereSenderMsg(), senderName));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpahereSenderMsg(), senderName));
             goalPlayer.setType(TPAHERE);
             goalPlayer.setRelatedPlayer((Player) sender);
-            goalPlayer.getPlayer().sendMessage(Utils.transferPlaceHolder(MessageFiles.message.getTpahereReceiverMsg(), senderName));
+            goalPlayer.getPlayer().sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpahereReceiverMsg(), senderName));
             return true;
         }
         return false;

@@ -4,6 +4,7 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import ski.mashiro.command.Command;
+import ski.mashiro.data.DropItemData;
 import ski.mashiro.file.ConfigFiles;
 import ski.mashiro.file.HomeFiles;
 import ski.mashiro.file.MessageFiles;
@@ -35,6 +36,7 @@ public final class SakuraEssentials extends JavaPlugin {
         Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setExecutor(new Command());
         Objects.requireNonNull(Bukkit.getPluginCommand("sakura")).setTabCompleter(new Command());
         Bukkit.getPluginManager().registerEvents(new Listener(), this);
+        DropItemData.clearDropItem();
         this.getLogger().info("启动成功");
         UpdateCheck.checkUpdate(this);
         new Metrics(this, 16747);
