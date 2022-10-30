@@ -21,7 +21,7 @@ public class ConfigFiles {
                 if (pluginFolder.mkdir()) {
                     if (!configFile.exists()) {
                         if (configFile.createNewFile()) {
-                            FileUtils.write(configFile, Utils.OBJECT_MAPPER.writeValueAsString(new Config(Double.parseDouble(plugin.getDescription().getVersion()), true)), "utf-8");
+                            FileUtils.write(configFile, Utils.OBJECT_MAPPER.writeValueAsString(new Config(Double.parseDouble(plugin.getDescription().getVersion()), true, true)), "utf-8");
                             return;
                         }
                     }
@@ -29,7 +29,7 @@ public class ConfigFiles {
             }
             if (!configFile.exists()) {
                 if (configFile.createNewFile()) {
-                    FileUtils.write(configFile, Utils.OBJECT_MAPPER.writeValueAsString(new Config(Double.parseDouble(plugin.getDescription().getVersion()), true)), "utf-8");
+                    FileUtils.write(configFile, Utils.OBJECT_MAPPER.writeValueAsString(new Config(Double.parseDouble(plugin.getDescription().getVersion()), true, true)), "utf-8");
                 }
             }
         } catch (Exception e) {

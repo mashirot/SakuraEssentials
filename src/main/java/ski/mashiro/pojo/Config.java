@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class Config {
     private double version;
     private boolean checkUpdate;
+    private boolean enableCleanDropItem;
 }
