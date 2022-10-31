@@ -2,6 +2,7 @@ package ski.mashiro.file;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.plugin.Plugin;
+import org.checkerframework.checker.units.qual.C;
 import ski.mashiro.pojo.Config;
 import ski.mashiro.util.Utils;
 
@@ -42,6 +43,7 @@ public class ConfigFiles {
         createConfig();
         try {
             config = Utils.OBJECT_MAPPER.readValue(FileUtils.readFileToString(configFile, "utf-8"), Config.class);
+            config.setVersion(Double.parseDouble(plugin.getDescription().getVersion()));
         } catch (Exception e) {
             e.printStackTrace();
         }

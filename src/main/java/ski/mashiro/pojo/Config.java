@@ -1,13 +1,13 @@
 package ski.mashiro.pojo;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * @author MashiroT
  */
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Config {
