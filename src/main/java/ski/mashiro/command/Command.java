@@ -27,12 +27,16 @@ public class Command implements TabExecutor {
             return true;
         }
         if (args.length == LENGTH_2) {
-            if (!(Tp.tpLength2(sender, args) || Home.homeLength2(sender, args))) {
+            boolean a = Tp.tpLength2(sender, args);
+            boolean b = Home.homeLength2(sender, args);
+            if (!a && !b) {
                 sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
             }
         }
         if (args.length == LENGTH_1) {
-            if (!(Tp.tpLength1(sender, args) || Home.homeLength1(sender, args))) {
+            boolean a = Tp.tpLength1(sender, args);
+            boolean b = Home.homeLength1(sender, args);
+            if (!a && !b) {
                 sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getErrCommandMsg(), sender.getName()));
             }
         }

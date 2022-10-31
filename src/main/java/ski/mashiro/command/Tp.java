@@ -56,14 +56,17 @@ public class Tp {
         String senderName = sender.getName();
         String goalName = args[1];
         OwnPlayer goalPlayer = PlayerData.getPlayer(goalName);
-        if (goalPlayer == null) {
-            return true;
-        }
-        if (senderName.equals(goalName)) {
-            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpSelfMsg(), sender.getName()));
-            return true;
+        if (goalPlayer != null) {
+            if (senderName.equals(goalName)) {
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpSelfMsg(), sender.getName()));
+                return true;
+            }
         }
         if (TPA.equalsIgnoreCase(cmd)) {
+            if (goalPlayer == null) {
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpReceiverDontExist(), sender.getName()));
+                return true;
+            }
             sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpaSenderMsg(), senderName));
             goalPlayer.setType(TPA);
             goalPlayer.setRelatedPlayer((Player) sender);
@@ -71,6 +74,10 @@ public class Tp {
             return true;
         }
         if (TPAHERE.equalsIgnoreCase(cmd)) {
+            if (goalPlayer == null) {
+                sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpReceiverDontExist(), sender.getName()));
+                return true;
+            }
             sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpahereSenderMsg(), senderName));
             goalPlayer.setType(TPAHERE);
             goalPlayer.setRelatedPlayer((Player) sender);

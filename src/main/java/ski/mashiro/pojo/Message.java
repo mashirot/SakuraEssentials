@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Message {
     private String senderTypeErr = "&2[SakuraEssentials] 输入者只能是玩家";
-    private String errCommandMsg = "&2[SakuraEssentials] 用法错误，/sakura help 查看帮助";
+    private String errCommandMsg = "&2[SakuraEssentials] 用法错误";
     private String tpaSenderMsg = "&2[SakuraEssentials] 传送请求已发送到 %player%";
     private String tpaReceiverMsg = "&2[SakuraEssentials] 玩家 %player% 请求传送到你这里，输入 /tpaccept 或 /tpadeny , 接受或拒绝";
     private String tpahereSenderMsg = "&2[SakuraEssentials] 传送请求已发送到 %player%";
@@ -19,6 +19,7 @@ public class Message {
     private String tpacceptReceiverMsg = "&2[SakuraEssentials] %player% 已接受传送请求";
     private String tpadenySenderMsg = "&2[SakuraEssentials] 拒绝请求";
     private String tpadenyReceiverMsg = "&2[SakuraEssentials] %player% 已拒绝传送请求";
+    private String tpReceiverDontExist = "&2[SakuraEssentials] 目标玩家不存在";
     private String noTpRequestMsg = "&2[SakuraEssentials] 暂无传送请求";
     private String tpSelfMsg = "&2[SakuraEssentials] 不能给自己发送请求";
     private String backSuccessMsg = "&2[SakuraEssentials] 传送成功";
