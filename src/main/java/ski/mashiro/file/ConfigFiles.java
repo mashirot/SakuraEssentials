@@ -2,7 +2,6 @@ package ski.mashiro.file;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.plugin.Plugin;
-import org.checkerframework.checker.units.qual.C;
 import ski.mashiro.pojo.Config;
 import ski.mashiro.util.Utils;
 
