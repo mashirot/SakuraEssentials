@@ -17,27 +17,35 @@ import java.util.concurrent.*;
 @SuppressWarnings("AlibabaThreadShouldSetName")
 public class DropItemData {
     private static final ScheduledExecutorService SCHEDULED_POOL = new ScheduledThreadPoolExecutor(1);
+    private static final ThreadPoolExecutor POOL = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new ArrayBlockingQueue<>(1));
     public static void clearDropItem(Plugin plugin) {
         if (!ConfigFiles.config.isEnableCleanDropItem()) {
             return;
         }
-        SCHEDULED_POOL.scheduleAtFixedRate(() -> Bukkit.getScheduler().runTask(plugin, () -> {
+        SCHEDULED_POOL.scheduleAtFixedRate(() -> {
+            Bukkit.broadcastMessage(Utils.transferTimePlaceHolder(MessageFiles.message.getClearTime(), String.valueOf(30)));
             try {
-                int sum = 0;
-                for (World world : Bukkit.getWorlds()) {
-                    int index = 0;
-                    for (Entity entity : world.getEntities()) {
-                        if (entity.getType().equals(EntityType.DROPPED_ITEM)) {
-                            entity.remove();
-                            index++;
+                Thread.sleep(15000);
+                Bukkit.broadcastMessage(Utils.transferTimePlaceHolder(MessageFiles.message.getClearTime(), String.valueOf(15)));
+                Thread.sleep(10000);
+                Bukkit.broadcastMessage(Utils.transferTimePlaceHolder(MessageFiles.message.getClearTime(), String.valueOf(5)));
+                Bukkit.getScheduler().runTask(plugin, () -> {
+                    int sum = 0;
+                    for (World world : Bukkit.getWorlds()) {
+                        int index = 0;
+                        for (Entity entity : world.getEntities()) {
+                            if (entity.getType().equals(EntityType.DROPPED_ITEM)) {
+                                entity.remove();
+                                index++;
+                            }
                         }
+                        sum += index;
                     }
-                    sum += index;
-                }
-                Bukkit.broadcastMessage(Utils.transferSumPlaceHolder(MessageFiles.message.getClearDropMsg(), String.valueOf(sum)));
+                    Bukkit.broadcastMessage(Utils.transferSumPlaceHolder(MessageFiles.message.getClearDropMsg(), String.valueOf(sum)));
+                });
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }), 5, 5, TimeUnit.MINUTES);
+        }, 570, 570, TimeUnit.SECONDS);
     }
 }

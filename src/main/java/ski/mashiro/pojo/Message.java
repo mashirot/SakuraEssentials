@@ -32,5 +32,6 @@ public class Message {
     private String homeExistMsg = "&2[SakuraEssentials] 家已存在";
     private String homeDontExistMsg = "&2[SakuraEssentials] 不存在此家";
 
+    private String clearTime = "&2[SakuraEssentials] &a%time% 秒后将清理掉落物";
     private String clearDropMsg = "&2[SakuraEssentials] &a清理了 %sum% 个掉落物";
 }
