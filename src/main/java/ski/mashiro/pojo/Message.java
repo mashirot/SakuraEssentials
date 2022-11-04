@@ -12,9 +12,9 @@ public class Message {
     private String senderTypeErr = "&2[SakuraEssentials] 输入者只能是玩家";
     private String errCommandMsg = "&2[SakuraEssentials] 用法错误";
     private String tpaSenderMsg = "&2[SakuraEssentials] 传送请求已发送到 %player%";
-    private String tpaReceiverMsg = "&2[SakuraEssentials] 玩家 %player% 请求传送到你这里，输入 /tpaccept 或 /tpadeny , 接受或拒绝";
+    private String tpaReceiverMsg = "&2[SakuraEssentials] 玩家 %player% 请求传送到你这里，输入 /s tpaccept 或 /s tpadeny , 接受或拒绝";
     private String tpahereSenderMsg = "&2[SakuraEssentials] 传送请求已发送到 %player%";
-    private String tpahereReceiverMsg = "&2[SakuraEssentials] 玩家 %player% 请求你传送到他那里，输入 /tpaccept 或 /tpadeny , 接受或拒绝";
+    private String tpahereReceiverMsg = "&2[SakuraEssentials] 玩家 %player% 请求你传送到他那里，输入 /s tpaccept 或 /s tpadeny , 接受或拒绝";
     private String tpacceptSenderMsg = "&2[SakuraEssentials] 接受请求";
     private String tpacceptReceiverMsg = "&2[SakuraEssentials] %player% 已接受传送请求";
     private String tpadenySenderMsg = "&2[SakuraEssentials] 拒绝请求";

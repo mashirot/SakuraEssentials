@@ -67,7 +67,7 @@ public class Tp {
                 sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpReceiverDontExist(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpaSenderMsg(), senderName));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpaSenderMsg(), goalName));
             goalPlayer.setType(TPA);
             goalPlayer.setRelatedPlayer((Player) sender);
             goalPlayer.getPlayer().sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpaReceiverMsg(), senderName));
@@ -78,7 +78,7 @@ public class Tp {
                 sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpReceiverDontExist(), sender.getName()));
                 return true;
             }
-            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpahereSenderMsg(), senderName));
+            sender.sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpahereSenderMsg(), goalName));
             goalPlayer.setType(TPAHERE);
             goalPlayer.setRelatedPlayer((Player) sender);
             goalPlayer.getPlayer().sendMessage(Utils.transferPlayerPlaceHolder(MessageFiles.message.getTpahereReceiverMsg(), senderName));

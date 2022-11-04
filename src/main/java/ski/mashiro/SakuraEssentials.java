@@ -16,6 +16,7 @@ import java.util.Objects;
 /**
  * @author MashiroT
  */
+@SuppressWarnings("unused")
 public final class SakuraEssentials extends JavaPlugin {
 
     @Override
